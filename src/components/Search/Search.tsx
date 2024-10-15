@@ -7,17 +7,15 @@ import Paginator from "./Paginator";
 import { Product } from "../../types/Product";
 import { useFetch } from "../../hooks/fetch";
 
-import axios from "axios";
 import { useEffect, useState, useMemo } from "react";
 
 const Search = () => {
-  const pageLength = 16;
+  const pageLength = 14;
   const totalItems = 51;
-  // const [loading, setLoading] = useState<boolean>(false);
-  // const [error, setError] = useState<string | null>(null);
+
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  // const [products, setProducts] = useState<Product[]>([]);
+
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [showList, setShowList] = useState(false);
 
@@ -48,26 +46,6 @@ const Search = () => {
       clearTimeout(handler);
     };
   }, [searchTerm]);
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const url = debouncedSearchTerm
-  //         ? `https://api.escuelajs.co/api/v1/products?offset=0&limit=${pageLength}&title=${debouncedSearchTerm}`
-  //         : `https://api.escuelajs.co/api/v1/products?offset=${
-  //             pageLength * currentPage - 1
-  //           }&limit=${pageLength}`;
-  //       const response = await axios.get(url);
-  //       setProducts(response.data);
-  //     } catch (err) {
-  //       setError((err as Error).message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchProducts();
-  // }, [debouncedSearchTerm, currentPage]);
 
   return (
     <div className="px-10 py-4">
